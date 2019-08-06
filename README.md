@@ -20,7 +20,7 @@ koop add koop-provider-xlsx
 
 Once installed, this provider enables routes like
 
-```bash
+```
 /koop-provider-xlsx/:id/FeatureServer/*
 ```
 
@@ -48,7 +48,7 @@ A configuration looks like this:
       "my-data": {
         // [required] a file path or a URL for the XLSX source file.
         // Path is relative to process.cwd() .
-        "url": "path_to_csv",
+        "url": "path_to_xlsx",
         "sheetName" : "sheet_name_of_the_workbook",
         // [required] point coordinate columns
         "geometryColumns": {
