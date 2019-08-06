@@ -1,0 +1,24 @@
+{
+  "name": "koop-provider-xlsx",
+  "version": "0.0.1",
+  "description": "Koop provider for Excel Files",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "tape 'test/**/*.test.js'",
+    "start": "NODE_ENV=dev koop serve -p 8000"
+  },
+  "author": "Jorge Barrachina Gutiérrez",
+  "license": "MIT",
+  "keywords": [
+    "koopjs",
+    "plugin",
+    "provider",
+    "xlsx",
+    "ntkog"
+  ],
+  "dependencies": {
+    "config": "^3.1.0",
+    "node-fetch": "^2.6.0",
+    "xlsx-stream-reader": "^1.1.0"
+  }
+}
