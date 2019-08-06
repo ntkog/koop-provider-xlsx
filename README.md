@@ -12,7 +12,7 @@ npm install ntkog/koop-provider-xlsx
 
 with [Koop CLI](https://github.com/koopjs/koop-cli) for your Koop app
 
-``bash
+```bash
 koop add koop-provider-xlsx
 ```
 
