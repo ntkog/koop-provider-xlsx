@@ -54,15 +54,18 @@ Model.prototype.getData = async function(req, callback) {
     }
 
     var headers;
-    var latColIdx,lonColIdx;
+    var latColIdx,lonColIdx,idFieldColIdx = null;
+    var hasGeometryFields = sourceConfig.hasOwnProperty("geometryColumns");
     // if we do not listen for rows we will only get end event
     // and have infor about the sheet like row count
     workSheetReader.on('row', function (row) {
       if (row.attributes.r == 1){
-          // do something with row 1 like save as column names
+          // Store headers - First value ignored because it doesn't contain real value
           headers = row.values.slice(1);
-          latColIdx = headers.indexOf(sourceConfig.geometryColumns.latitude);
-          lonColIdx = headers.indexOf(sourceConfig.geometryColumns.longitude);
+          if (hasGeometryFields) {
+            latColIdx = headers.indexOf(sourceConfig.geometryColumns.latitude);
+            lonColIdx = headers.indexOf(sourceConfig.geometryColumns.longitude);
+          }
           idFieldColIdx = headers.indexOf(sourceConfig.metadata.idField);
           console.log(`ENCONTRADO: ${idFieldColIdx}`);
 
@@ -76,17 +79,20 @@ Model.prototype.getData = async function(req, callback) {
           type : "Point",
           coordinates : [0,0]
         };
+
         let currentProperties = {};
         row.values.forEach(function(rowVal, colNum){
             // do something with row values
             if(![latColIdx,lonColIdx,idFieldColIdx].includes(colNum)) {
               currentProperties[headers[colNum]] = rowVal === undefined ? "" : rowVal;
             } else {
-              if (colNum === latColIdx) {
-                currentGeometry.coordinates[1] = parseFloat(rowVal);
-              }
-              if (colNum === lonColIdx) {
-                currentGeometry.coordinates[0] = parseFloat(rowVal);
+              if (hasGeometryFields) {
+                if (colNum === latColIdx) {
+                  currentGeometry.coordinates[1] = parseFloat(rowVal);
+                }
+                if (colNum === lonColIdx) {
+                  currentGeometry.coordinates[0] = parseFloat(rowVal);
+                }
               }
               if (colNum === idFieldColIdx) {
                 currentProperties[sourceConfig.metadata.idField] = parseInt(rowVal);
@@ -96,9 +102,9 @@ Model.prototype.getData = async function(req, callback) {
 
         features.push({
           ...FEATURE_TEMPLATE,
-          geometry : {
-            ...currentGeometry
-          },
+          geometry : hasGeometryFields
+           ? { ...currentGeometry }
+           : null,
           properties: {
             ...currentProperties
           }
@@ -117,6 +123,7 @@ Model.prototype.getData = async function(req, callback) {
 
   workBookReader.on('end', function () {
     // end of workbook reached
+    //console.log(util.inspect(features, { compact: true, depth: 5, breakLength: 80 }));
     callback(null, {
       ...GEOJSON_TEMPLATE,
       features : features,

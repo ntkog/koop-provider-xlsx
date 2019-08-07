@@ -2,17 +2,13 @@
   "koop-provider-xlsx": {
     "sources": {
       "gasolineras": {
-        "url": "excel_files/gasolineras_spain.xlsx",
+        "url": "excel_files/gasolineras_spain_without_geometry.xlsx",
         "sheetName" : "Sheet1",
         "delimiter" : ",",
         "metadata": {
           "name": "Gasolineras en España",
           "description": "Todas las gasolineras",
           "idField": "objectid"
-        },
-        "geometryColumns": {
-          "latitude": "Y",
-          "longitude": "X"
         }
       }
     }
