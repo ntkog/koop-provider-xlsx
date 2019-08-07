@@ -4,16 +4,19 @@ A simple Koop provider for consuming **xlsx** files (Excel Files) thru nodejs st
 
 ## Installation
 
-with npm
 
 ```bash
-npm install ntkog/koop-provider-xlsx
+git clone https://github.com/ntkog/koop-provider-xlsx.git
+cd koop-provider-xlsx
+npm install
 ```
+
+> WARNING : The following method is not working yet. The reason is **koop-cli** expects a npm package published and we're not publishing it yet.
 
 with [Koop CLI](https://github.com/koopjs/koop-cli) for your Koop app
 
 ```bash
-koop add koop-provider-xlsx
+koop add ntkog/koop-provider-xlsx
 ```
 
 ## Usage
