@@ -50,14 +50,16 @@ A configuration looks like this:
         // Path is relative to process.cwd() .
         "url": "path_to_xlsx",
         "sheetName" : "sheet_name_of_the_workbook",
-        // [required] point coordinate columns
+        // [optional] point coordinate columns
         "geometryColumns": {
           "longitude": "longitude_column_name",
           "latitude": "latitude_column_name"
         },
         // [optional] ArcGIS service metadata
         "metadata": {
-          "idField": "id_column_name"
+          "idField": "id_column_name",
+          "name": "your_geoservice_name",
+          "description": "your_description",
         }
       }
     }

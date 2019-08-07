@@ -4,7 +4,6 @@
       "gasolineras": {
         "url": "excel_files/gasolineras_spain.xlsx",
         "sheetName" : "Sheet1",
-        "delimiter" : ",",
         "metadata": {
           "name": "Gasolineras en España",
           "description": "Todas las gasolineras",
