@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "config": "^3.1.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "xlsx-stream-reader": "^1.1.0"
   }
 }
