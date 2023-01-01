@@ -17,7 +17,7 @@
     "ntkog"
   ],
   "dependencies": {
-    "config": "^3.1.0",
+    "config": "^3.3.8",
     "node-fetch": "^2.6.0",
     "xlsx-stream-reader": "^1.1.0"
   }
